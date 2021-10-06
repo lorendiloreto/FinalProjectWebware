@@ -1,0 +1,24 @@
+{
+  "name": "finalprojectwebware",
+  "version": "1.0.0",
+  "description": "Final Project Webware A21",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lorendiloreto/FinalProjectWebware.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lorendiloreto/FinalProjectWebware/issues"
+  },
+  "homepage": "https://github.com/lorendiloreto/FinalProjectWebware#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
