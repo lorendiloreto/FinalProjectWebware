@@ -5,7 +5,7 @@ const path = require('path')
 
 app.listen(process.env.PORT || 3000)
 
-const publicDirectoryPath = path.join(__dirname, 'public')
+const publicDirectoryPath = path.join(__dirname, 'build')
 app.use(express.static(publicDirectoryPath))
 app.use(bodyParser.json())
 
