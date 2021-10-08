@@ -33,6 +33,12 @@ constructor(props) {
           }
         }
 
+
+    function handleClick(e) {
+        type = "SIGNUP"
+        console.log(type);
+    
+    }
     const { name } = this.props;
     return(
       <>
