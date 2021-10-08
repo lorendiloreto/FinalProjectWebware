@@ -2,6 +2,7 @@
   "imports": {
     "bootstrap": "./bootstrap.js",
     "bootstrap/dist/css/bootstrap.min.css": "./bootstrap/dist/css/bootstrap.min.css",
+    "formik": "./formik.js",
     "react": "./react.js",
     "react-dom": "./react-dom.js"
   }
