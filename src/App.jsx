@@ -2,9 +2,8 @@ import React from "react";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class App extends React.Component {
-  render() {
-    const { name } = this.props;
+function App(props) {
+    const name = props.name;
     return (
       <>
         <h1>
@@ -15,7 +14,6 @@ class App extends React.Component {
         </button>
       </>
     );
-  }
 }
 
 export default App;
