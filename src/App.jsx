@@ -12,7 +12,7 @@ constructor(props) {
         login: "LOGIN"
     }
   }
- 
+
   updateContent = () => {
       console.log(this.state.login)
       if(this.state.login == "LOGIN")this.setState({ login: "SIGNUP"});
@@ -22,6 +22,16 @@ constructor(props) {
  
 
     render() {
+
+
+       const loginState = () =>{
+          if(this.state.login == 'LOGIN'){
+            return (<button>Logout</button>);
+          } else{
+            return (<button>Login</button>);
+          }
+        }
+
 
     function handleClick(e) {
         type = "SIGNUP"
@@ -38,8 +48,9 @@ constructor(props) {
             <button type="button" onClick={this.updateContent} class="btn btn-primary">
       { this.state.login }
             </button>
-
-           </div>
+           {loginState()}
+        
+        </div>
       </>
     );
   }
