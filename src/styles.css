@@ -1,4 +1,16 @@
 h1 {
-    color: white;
-    background-color: black;
-  }
+    color: #AC2B37;
+    background-color: white;
+    text-align:center;
+}
+
+.body {
+    background-color:#AC2B37;
+    height:100%
+}
+
+html,body,#app,#app>div {
+    height:100%;
+}
+
+
