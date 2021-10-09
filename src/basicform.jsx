@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 function basicform(props) {
-    const {name, textInput} = props
+    const {name, textInput, extraButtons} = props
 
     function handleSubmit(event) {
         alert('An essay was submitted: ');
@@ -53,6 +53,20 @@ function basicform(props) {
             return []
         }
     }
+    const buttons = () =>{
+
+        if(extraButtons.length > 0){
+
+            return extraButtons.map(function(each){
+                return(
+                    <div class="form-group"><button class="btn btn-primary btn-block" onclick={each[1]} type="button">{each[0]}</button></div>
+                )
+            })
+        } else {
+            return []
+        }
+    }
+
 
     return (
         <div class="login-light">
@@ -60,8 +74,8 @@ function basicform(props) {
         <form onSubmit={handleSubmit}>
         <h2>{name}</h2>
         {inputFields()}
-        <button type="submit">Submit</button>
         <div class="form-group"><button class="btn btn-primary btn-block" type="submit">{name}</button></div>
+        {buttons()}
         </form>
         </div>
     );
