@@ -37,6 +37,10 @@ client.connect()
 
 // ----- MongoDB Set up ------
 
+app.get('/', function(request, response) {
+
+    response.sendFile( __dirname + '/build/alumni.html' )
+})
 
 const publicDirectoryPath = path.join(__dirname, 'build')
 
@@ -116,10 +120,6 @@ app.post( "/login", async (req, res) => {
 app.post( "/exampleRequest", (req, res) => {
     console.log("Click Received")
     res.end()
-})
-app.get('/', function(request, response) {
-
-    response.sendFile( __dirname + '/views/index.html' )
 })
 
 app.listen(process.env.PORT || 3000)
