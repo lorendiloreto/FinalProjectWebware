@@ -2,11 +2,17 @@ var express = require( 'express' )
 const bodyParser = require("body-parser")
 var app = express()
 const path = require('path')
-    
+
+const { 
+      v1: uuidv1,
+      v4: uuidv4
+} = require('uuid')
+
 const mongodb = require( 'mongodb' ),
     mongoDatabase = 'goatconnect',
     mongoCollection = 'users',
     mongoCollection2 = 'userInfo',
+    mongoCollection3 = 'signup-keys',
     cookie = require( 'cookie-session' )
 
 // ----- MongoDB Set up ------
@@ -16,6 +22,7 @@ const uri = 'mongodb+srv://GoatConnect:DMx7JlUVQ04R5jLi@a3-cluster.wk5nt.mongodb
 const client = new mongodb.MongoClient( uri, { useNewUrlParser: true, useUnifiedTopology:true })
 let userCollection = null
 let userInfoCollection = null
+let keysCollection = null
 
 client.connect()
     .then( () => {
@@ -31,6 +38,12 @@ client.connect()
     })
     .then( __collection => {
         userInfoCollection = __collection
+    })
+    .then( () => {
+        return client.db( mongoDatabase ).collection( mongoCollection3 )
+    })
+    .then( __collection => {
+        keysCollection = __collection
         return "Connected to Databases"
     })
     .then( console.log )
@@ -71,11 +84,40 @@ app.post( "/createaccount", async (req, res) => {
         data[el] = req.body[el]
     })
 
+    let alumKeys = await keysCollection.findOne({'type':'alumniKeys'})
+    let stuKeys = await keysCollection.findOne({'type':'studentKeys'})
+    
+    let comp = false
+    let invalidKey = true 
+
+    if (alumKeys.alumniKeys.find(el => el === data.key)) {
+        //alum
+        comp = true
+        invalidKey = false
+    } else if (stuKeys.studentKeys.find(el => el === data.key)) { 
+        // student
+        comp = false
+        invalidKey = false
+    } else {
+        // invalid key
+    }
+    
+    if (invalidKey) {
+        res.status(404).end("Invalid Key")
+        return
+    }
+
+    if (data.username === "") {
+        res.status(401).end("empty username")
+        return
+    }
+
     let response = await userCollection.insertOne( {"username":data.username, "password":data.password} )
     
     userInfoCollection.insertOne( {
         userID : response.insertedId,
-        userInfo : data
+        userInfo : data,
+        type : (comp ? "Company" : "Athlete")
     } )
 
     req.session.login = true
@@ -155,6 +197,25 @@ app.post("/mobile/login", async (req, res) => {
 })
 
 /***********************/
+
+//app.get("/generateKeys", (req, res) => {
+//    console.log("generating...")
+//    
+//    let studentArr = []
+//    let alumniArr = []
+//
+//    for (let i = 0; i < 50; i++) {
+//        studentArr.push(uuidv4())
+//        alumniArr.push(uuidv4())
+//    }
+//    
+//    keysCollection.insertOne( {"type": "studentKeys", "studentKeys":studentArr } )
+//        .then( console.log )
+//    keysCollection.insertOne( {"type": "alumniKeys", "alumniKeys":alumniArr } )
+//        .then( console.log )
+//    
+//    res.end("Done")
+//})
 
 /** Example request */
 app.post( "/exampleRequest", (req, res) => {
