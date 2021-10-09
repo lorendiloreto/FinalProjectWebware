@@ -34,6 +34,7 @@ client.connect()
         return "Connected to Databases"
     })
     .then( console.log )
+    /130.215.121.19:8080
 
 // ----- MongoDB Set up ------
 
@@ -83,6 +84,17 @@ app.post( "/createaccount", async (req, res) => {
     res.redirect("") // *** Change to authenticated endpoint ***
 
 })
+
+/* 
+
+    Expects requests with JSON body in Format:
+    {
+        "fieldname":"value",
+        "fieldname":"value",
+        ...
+    }
+
+ */
 
 app.post( "/login", async (req, res) => { 
     console.log(req.body)
