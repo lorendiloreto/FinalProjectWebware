@@ -76,6 +76,7 @@ app.post( "/createaccount", async (req, res) => {
     userInfoCollection.insertOne( {
         userID : response.insertedId,
         portfolio : []
+
     } )
 
     req.session.login = true
@@ -125,6 +126,37 @@ app.post( "/login", async (req, res) => {
     }
 
 })
+
+/**** Mobile Routes *****/
+
+app.post("/mobile/login", (req, res) => {
+    console.log("---------LOG------------")
+    console.log(req.body)
+    console.log("---------LOG------------")
+
+    let uName = req.body.username
+    let pWord = req.body.password
+
+    let arr = await userCollection.findOne({'username':uName})
+    console.log(arr)
+
+    if (arr === null) {
+        //incorect username/password
+        res.status(401).end()
+    } else if (arr.username === uName && arr.password === pWord) { 
+        // correct user/pass
+        res.status(200).end()
+    } else {
+        // incorrect user/pass
+        req.session.login= false
+        req.session.userID = null
+        res.status(401).end()
+    }
+    
+})
+
+/***********************/
+
 /** Example request */
 app.post( "/exampleRequest", (req, res) => {
     console.log("Click Received")
