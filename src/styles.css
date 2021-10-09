@@ -98,6 +98,16 @@ html,body,#app,#app>div {
   transform:translateY(1px);
 }
 
+.card-img-top{
+  object-fit: cover;
+}
+
+.card{
+  margin-left: 10%;
+
+}
+
+
 table{
   margin-left: 10%;
   margin-right: 10%;

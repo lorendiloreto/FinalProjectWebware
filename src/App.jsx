@@ -10,6 +10,8 @@ function App(props) {
     const mayor = props.mayor;
     const gpa = props.gpa;
     const image = props.image;
+    const aboutMe = props.image;
+    const resume = props.resume;
 
     const [clicks, setClicks] = useState(0); /* State Hook used for keeping track of the component's "clicks" */
     const [login, setLogin] = useState("LOGIN"); 
@@ -23,24 +25,33 @@ function App(props) {
             })
     }
 
-    function FirstName(props) {
-        return <td>{props.firstName}</td>;
-    }
 
-    function LastName(props) {
+    function FullName(props) {
+        return <h5 className="card-title">{props.firstName} {props.lastName}</h5>;
         return <td>{props.lastName}</td>;
     }
 
     function Mayor(props) {
-        return <td>{props.mayor}</td>;
+        return <h6 className="card-subtitle mb-2 text-muted">{props.mayor}</h6>;
     }
 
     function GPA(props) {
-        return <td>{props.gpa}</td>;
+        return <h6 className="card-subtitle mb-2 text-muted right">   GPA:{props.gpa}</h6>
     }
 
     function Image(props) {
-        return  <td><img src={props.image} width="50px" heught="50px"></img></td>;
+        return <img className="card-img-top" src={props.image} alt="Card image cap"></img>
+    }
+
+    function AboutMe(props){
+        return <p className="card-text text-justify">{props.aboutMe}</p>
+    }
+
+    function Resume(props){
+        return <a href="functionalsample.pdf" download>
+        <img src="downloadIcon.png" alt="Resume" width="50" height="50"/>
+           Resume
+       </a>;
     }
 
     const loginState = () =>{
@@ -66,50 +77,17 @@ if(login=="LOGIN"){setLogin("SIGNUP")}else{setLogin("LOGIN")}
         </button>
         {loginState()}
         <h2>Student Athletes:</h2>
-        <table>
-            <tbody>
-            <tr>
-                <th>Photo</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Mayor</th>
-                <th>GPA</th>
-                <th>Resume</th>
-            </tr>
-            <tr>
-                <Image image="profile.jpg"/>
-                <FirstName firstName="Maria del Carmen"/>
-                <LastName lastName="Sacristan Benjet"/>
+        <div className="card col-sm-12 col-md-4 col-lg-3" >
+            <Image image="profile.jpg"/> 
+            <div className="card-body">
+                <FullName firstName="Maria" lastName="Sacristan"/> 
                 <Mayor mayor="Computer Science"/>
+                 
+                <AboutMe aboutMe="Some quick example text to build on the card title and make up the bulk of the card's content."/>
                 <GPA gpa="3.4"/>
-                <Image image="functionalsample.pdf"/>
-            </tr>
-            <tr>
-                <Image image="profile.jpg"/>
-                <FirstName firstName="Maria del Carmen"/>
-                <LastName lastName="Sacristan Benjet"/>
-                <Mayor mayor="Computer Science"/>
-                <GPA gpa="3.4"/>
-                <Image image="functionalsample.pdf"/>
-            </tr>
-            <tr>
-                <Image image="profile.jpg"/>
-                <FirstName firstName="Maria del Carmen"/>
-                <LastName lastName="Sacristan Benjet"/>
-                <Mayor mayor="Computer Science"/>
-                <GPA gpa="3.4"/>
-                <Image image="functionalsample.pdf"/>
-            </tr>
-            <tr>
-                <Image image="profile.jpg"/>
-                <FirstName firstName="Maria del Carmen"/>
-                <LastName lastName="Sacristan Benjet"/>
-                <Mayor mayor="Computer Science"/>
-                <GPA gpa="3.4"/>
-                <Image image="functionalsample.pdf"/>
-            </tr>
-            </tbody>
-        </table>
+                <Resume resume="functionalsample.pdf"/>
+            </div>
+         </div>
         </div>
         </>
     );
