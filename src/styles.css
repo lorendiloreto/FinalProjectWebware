@@ -91,3 +91,10 @@ html,body,#app,#app>div {
 .login-light form .btn-primary:active {
   transform:translateY(1px);
 }
+.card-img-top{
+  object-fit: cover;
+}
+
+.card{
+  box-shadow:3px 3px 4px rgba(0,0,0,0.2);
+}

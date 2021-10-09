@@ -31,9 +31,10 @@ client.connect()
     })
     .then( __collection => {
         userInfoCollection = __collection
-        return "Connected to Databases"
+        // return "Connected to Databases"
+        return __collection.find({ }).toArray()
     })
-    .then( console.log )
+    .then( console.log ) 
 
 // ----- MongoDB Set up ------
 
@@ -121,9 +122,9 @@ app.post( "/exampleRequest", (req, res) => {
     console.log("Click Received")
     res.end()
 })
-app.post( "/getPlayers",  (req, res) => {
-    console.log("Retrieving Players")
-    red.end([{"Name": "Christian Luizzi", "Position": "QB"}, {"Name": "Harrison Kyriacou", "Position": "MLB"}])
+app.post( "/getPlayers",  async (req, res) => {
+    let data = await userInfoCollection.find({ }).toArray()
+    res.json(data)
 })
 
 app.listen(process.env.PORT || 3000)
