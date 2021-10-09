@@ -5,6 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App(props) {
     const name = props.name;
+    const firstName = props.firstName;
+    const lastName = props.LastName;
+    const mayor = props.mayor;
+    const gpa = props.gpa;
+    const image = props.image;
+
     const [clicks, setClicks] = useState(0); /* State Hook used for keeping track of the component's "clicks" */
     const [login, setLogin] = useState("LOGIN"); 
 
@@ -15,6 +21,26 @@ function App(props) {
             .then( response => {
                 console.log("Request returned")
             })
+    }
+
+    function FirstName(props) {
+        return <td>{props.firstName}</td>;
+    }
+
+    function LastName(props) {
+        return <td>{props.lastName}</td>;
+    }
+
+    function Mayor(props) {
+        return <td>{props.mayor}</td>;
+    }
+
+    function GPA(props) {
+        return <td>{props.gpa}</td>;
+    }
+
+    function Image(props) {
+        return  <td><img src={props.image} width="50px" heught="50px"></img></td>;
     }
 
     const loginState = () =>{
@@ -51,36 +77,36 @@ if(login=="LOGIN"){setLogin("SIGNUP")}else{setLogin("LOGIN")}
                 <th>Resume</th>
             </tr>
             <tr>
-                <td><img src="profile.jpg" width="50px" heught="50px"></img></td>
-                <td>Maria del Carmen</td>
-                <td>Sacristan Benjet</td>
-                <td>Computer Science</td>
-                <td>3.5</td>
-                <td>none</td>
+                <Image image="profile.jpg"/>
+                <FirstName firstName="Maria del Carmen"/>
+                <LastName lastName="Sacristan Benjet"/>
+                <Mayor mayor="Computer Science"/>
+                <GPA gpa="3.4"/>
+                <Image image="functionalsample.pdf"/>
             </tr>
             <tr>
-                <td>none</td>
-                <td>Maria del Carmen</td>
-                <td>Sacristan Benjet</td>
-                <td>Computer Science</td>
-                <td>3.5</td>
-                <td>none</td>
+                <Image image="profile.jpg"/>
+                <FirstName firstName="Maria del Carmen"/>
+                <LastName lastName="Sacristan Benjet"/>
+                <Mayor mayor="Computer Science"/>
+                <GPA gpa="3.4"/>
+                <Image image="functionalsample.pdf"/>
             </tr>
             <tr>
-                <td>none</td>
-                <td>Maria del Carmen</td>
-                <td>Sacristan Benjet</td>
-                <td>Computer Science</td>
-                <td>3.5</td>
-                <td>none</td>
+                <Image image="profile.jpg"/>
+                <FirstName firstName="Maria del Carmen"/>
+                <LastName lastName="Sacristan Benjet"/>
+                <Mayor mayor="Computer Science"/>
+                <GPA gpa="3.4"/>
+                <Image image="functionalsample.pdf"/>
             </tr>
             <tr>
-                <td>none</td>
-                <td>Maria del Carmen</td>
-                <td>Sacristan Benjet</td>
-                <td>Computer Science</td>
-                <td>3.5</td>
-                <td>none</td>
+                <Image image="profile.jpg"/>
+                <FirstName firstName="Maria del Carmen"/>
+                <LastName lastName="Sacristan Benjet"/>
+                <Mayor mayor="Computer Science"/>
+                <GPA gpa="3.4"/>
+                <Image image="functionalsample.pdf"/>
             </tr>
             </tbody>
         </table>
