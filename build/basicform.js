@@ -5,8 +5,29 @@ import "./styles.css.proxy.js";
 function basicform(props) {
   const {name, textInput, extraButtons} = props;
   function handleSubmit(event) {
-    alert("An essay was submitted: ");
-    event.preventDefault();
+    var formArgs;
+    if (name.toLowerCase() == "log in") {
+      alert("Handled LOGIN");
+      event.preventDefault();
+      formArgs = {email: event.target[0].vaule, password: event.target[1].vaule};
+      fetch("/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formArgs)
+      }).then((res) => {
+        if (res.ok) {
+          window.location.href = res.url;
+        } else {
+        }
+      });
+    } else if (name.toLowerCase() == "sign up") {
+      alert("Handled SIGNUP");
+      event.preventDefault();
+    } else {
+      alert(name + ":Handled FAILED");
+    }
   }
   const inputFields = () => {
     if (textInput.length > 0) {

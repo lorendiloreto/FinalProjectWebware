@@ -12,13 +12,13 @@ ReactDOM.render([
     name: "Jane"
   }),
   /* @__PURE__ */ React.createElement(Basicform, {
-    name: "Log In",
-    textInput: textInputLogin,
-    extraButtons: extraButtonsLogin
-  }),
-  /* @__PURE__ */ React.createElement(Basicform, {
     name: "Sign Up",
     textInput: textInputSignup,
     extraButtons: extraButtonsSignup
+  }),
+  /* @__PURE__ */ React.createElement(Basicform, {
+    name: "Log In",
+    textInput: textInputLogin,
+    extraButtons: extraButtonsLogin
   })
 ], mountNode);

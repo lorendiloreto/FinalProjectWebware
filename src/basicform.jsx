@@ -7,8 +7,36 @@ function basicform(props) {
     const {name, textInput, extraButtons} = props
 
     function handleSubmit(event) {
-        alert('An essay was submitted: ');
+        var formArgs;
+       if(name.toLowerCase()=="log in"){
+        alert('Handled LOGIN');
         event.preventDefault();
+       
+// console.log(event.target[0].value)
+//        console.log("Hello" + event.email)
+        formArgs = {username: event.target[0].value, password: event.target[1].value}
+        fetch('/login', {
+        method: 'POST',
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify(formArgs)
+    }).then(res => {
+        if (res.ok) {
+            window.location.href = res.url
+        } else {
+            //tell them the effed up
+        }
+    })
+       
+       }else if(name.toLowerCase()=="sign up"){
+        alert('Handled SIGNUP');
+        event.preventDefault();
+
+
+       }else{
+        alert(name + ':Handled FAILED');
+       }
     }
     const inputFields = () =>{
 
