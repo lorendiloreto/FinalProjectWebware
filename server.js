@@ -34,7 +34,6 @@ client.connect()
         return "Connected to Databases"
     })
     .then( console.log )
-    /130.215.121.19:8080
 
 // ----- MongoDB Set up ------
 
