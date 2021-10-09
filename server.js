@@ -96,7 +96,9 @@ app.post( "/createaccount", async (req, res) => {
  */
 
 app.post( "/login", async (req, res) => { 
-    console.log(req.body)
+    console.log("---------LOG------------")
+    console.log(req)
+    console.log("---------LOG------------")
 
     let uName = req.body.find(elm=>elm.name==='username').value
     let pWord = req.body.find(elm=>elm.name==='password').value
