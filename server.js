@@ -66,12 +66,12 @@ app.post( "/createaccount", async (req, res) => {
     }
 
     let data = {}
-    req.body.forEach(el => {
-        if (el.name !== 'password2')
-            data[el.name] = el.value
+
+    Object.keys(req.body).forEach(el => {
+        data[el] = req.body[el]
     })
 
-    let response = await userCollection.insertOne( {data.username, data.password} )
+    let response = await userCollection.insertOne( {"username":data.username, "password":data.password} )
     
     userInfoCollection.insertOne( {
         userID : response.insertedId,

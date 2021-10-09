@@ -23,7 +23,7 @@ function basicform(props) {
       });
     } else if (name.toLowerCase() == "sign up") {
       event.preventDefault();
-      formArgs = {username: event.target[0].value, password: event.target[1].value};
+      formArgs = {firstname: event.target[0].value, lastname: event.target[1].value, username: event.target[2].value, password: event.target[3].value};
       fetch("/createaccount", {
         method: "POST",
         headers: {
