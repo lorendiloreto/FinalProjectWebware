@@ -17,8 +17,6 @@ function App(props) {
             })
     }
 
-
-
     const loginState = () =>{
         if(login == 'LOGIN'){
             return (
