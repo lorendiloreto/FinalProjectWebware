@@ -3,7 +3,10 @@ import "./_snowpack/pkg/bootstrap.js";
 import "./_snowpack/pkg/bootstrap/dist/css/bootstrap.min.css.proxy.js";
 import "./styles.css.proxy.js";
 function basicform(props) {
-  const {name, textInput, extraButtons} = props;
+  const {name, textInput, extraButtons, fun, value} = props;
+  const resetInputField = () => {
+    document.getElementById("form").reset();
+  };
   function handleSubmit(event) {
     var formArgs;
     if (name.toLowerCase() == "log in") {
@@ -23,7 +26,7 @@ function basicform(props) {
       });
     } else if (name.toLowerCase() == "sign up") {
       event.preventDefault();
-      formArgs = {username: event.target[0].value, password: event.target[1].value};
+      formArgs = {firstname: event.target[0].value, lastname: event.target[1].value, username: event.target[2].value, password: event.target[3].value, key: event.target[5].value};
       fetch("/createaccount", {
         method: "POST",
         headers: {
@@ -77,9 +80,12 @@ function basicform(props) {
           class: "form-group"
         }, /* @__PURE__ */ React.createElement("button", {
           class: "btn btn-primary btn-block",
-          onclick: each[1],
+          onClick: () => {
+            fun();
+            resetInputField();
+          },
           type: "button"
-        }, each[0]));
+        }, each));
       });
     } else {
       return [];
@@ -88,7 +94,8 @@ function basicform(props) {
   return /* @__PURE__ */ React.createElement("div", {
     class: "login-light"
   }, /* @__PURE__ */ React.createElement("form", {
-    onSubmit: handleSubmit
+    onSubmit: handleSubmit,
+    id: "form"
   }, /* @__PURE__ */ React.createElement("h2", null, name), inputFields(), /* @__PURE__ */ React.createElement("div", {
     class: "form-group"
   }, /* @__PURE__ */ React.createElement("button", {

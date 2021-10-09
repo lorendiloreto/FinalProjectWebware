@@ -4,7 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 function basicform(props) {
-    const {name, textInput, extraButtons} = props
+    const {name, textInput, extraButtons, fun, value} = props
+  
+  const resetInputField = () => {
+  document.getElementById("form").reset()
+  };
+
 
     function handleSubmit(event) {
         var formArgs;
@@ -32,7 +37,7 @@ function basicform(props) {
         event.preventDefault();
         
 
-        formArgs = {firstname: event.target[0].value, lastname: event.target[1].value, username: event.target[2].value, password: event.target[3].value}
+        formArgs = {firstname: event.target[0].value, lastname: event.target[1].value, username: event.target[2].value, password: event.target[3].value, key: event.target[5].value}
 
         fetch('/createaccount', {
             method : 'POST',
@@ -65,7 +70,8 @@ function basicform(props) {
                         <label>{each} </label>
                         </div>
                         <div class="form-group">
-                        <input 
+                        <input
+
                         type="password"
                         name={each}
                         //onChange={}
@@ -102,7 +108,7 @@ function basicform(props) {
 
             return extraButtons.map(function(each){
                 return(
-                    <div class="form-group"><button class="btn btn-primary btn-block" onclick={each[1]} type="button">{each[0]}</button></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" onClick={() => {fun();resetInputField();}} type="button">{each}</button></div>
                 )
             })
         } else {
@@ -114,7 +120,7 @@ function basicform(props) {
     return (
         <div class="login-light">
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id="form">
         <h2>{name}</h2>
         {inputFields()}
         <div class="form-group"><button class="btn btn-primary btn-block" type="submit">{name}</button></div>

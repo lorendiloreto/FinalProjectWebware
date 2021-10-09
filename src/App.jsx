@@ -2,12 +2,13 @@ import React, {useState} from "react";
 import 'bootstrap';
 import './styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Basicform from "./basicform"
+import ReactDOM from "react-dom";
 
 function App(props) {
     const name = props.name;
-    const [clicks, setClicks] = useState(0); /* State Hook used for keeping track of the component's "clicks" */
     const [login, setLogin] = useState("LOGIN"); 
-
+    
 
     function sendRequest() { /* Simple Javascript function inside of component used for sending post request */
         setClicks(clicks + 1) /* Used to set the value of the state "clicks" */
@@ -17,29 +18,38 @@ function App(props) {
             })
     }
 
+    let textInputLogin=["email", "password"]
+    let textInputSignup=["firstname", "lastname","email", "password", "confirm password", "key"]
+    let extraButtonsLogin = ["Sign up"]
+    let extraButtonsSignup = ["Back to login"]
+
     const loginState = () =>{
         if(login == 'LOGIN'){
             return (
-                <div> <button>Logout</button> </div>
+                <Basicform name="Log In" textInput={textInputLogin} extraButtons={extraButtonsLogin}  fun = {() => setLogin("SIGNUP")} value="gg"/>,
             );
-        } else{
-            return (<button>Login</button>);
+        } else if(login == "SIGNUP"){
+            return (
+                <Basicform name="Sign Up" textInput={textInputSignup} extraButtons= {extraButtonsSignup} fun = {() => setLogin("LOGIN")} value="GGS" />
+
+            );
         }
     }
     function clicked(){
-if(login=="LOGIN"){setLogin("SIGNUP")}else{setLogin("LOGIN")}
-}
+        if(login=="LOGIN"){setLogin("SIGNUP")}else{setLogin("LOGIN")}
+    }
     return(
         <>
-        <div className = "body">
-        <h1>
-        {name}
-        </h1>
-        <button type="button" onClick={clicked} class="btn btn-primary">
-        { login }
-        </button>
+        <div className = "body outer">
+         <div class="inner">
+<nav class="navbar navbar-light bg-light justify-content-center">
+  <h1 class="goat-connect">{name}</h1>
+</nav>
+        </div>
+         <div class="login-light inner">
         {loginState()}
-
+        <div id="form"></div>
+        </div>
         </div>
         </>
     );
