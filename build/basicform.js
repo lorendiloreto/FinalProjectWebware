@@ -7,9 +7,8 @@ function basicform(props) {
   function handleSubmit(event) {
     var formArgs;
     if (name.toLowerCase() == "log in") {
-      alert("Handled LOGIN");
       event.preventDefault();
-      formArgs = {email: event.target[0].vaule, password: event.target[1].vaule};
+      formArgs = {username: event.target[0].value, password: event.target[1].value};
       fetch("/login", {
         method: "POST",
         headers: {
@@ -23,8 +22,20 @@ function basicform(props) {
         }
       });
     } else if (name.toLowerCase() == "sign up") {
-      alert("Handled SIGNUP");
       event.preventDefault();
+      formArgs = {username: event.target[0].value, password: event.target[1].value};
+      fetch("/createaccount", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formArgs)
+      }).then((res) => {
+        if (!res.ok) {
+        } else {
+          window.location.href = res.url;
+        }
+      });
     } else {
       alert(name + ":Handled FAILED");
     }
