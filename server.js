@@ -54,7 +54,7 @@ app.post( "/createaccount", async (req, res) => {
     
     let repeat = false
 
-    let count = await userCollection.find({'username':req.body.find(elm => elm.name === "username").value}).count()
+    let count = await userCollection.find({'username':req.body.username}).count()
     
     if (count > 0 ) {
         repeat = true
@@ -66,17 +66,16 @@ app.post( "/createaccount", async (req, res) => {
     }
 
     let data = {}
-    req.body.forEach(el => {
-        if (el.name !== 'password2')
-            data[el.name] = el.value
+
+    Object.keys(req.body).forEach(el => {
+        data[el] = req.body[el]
     })
 
-    let response = await userCollection.insertOne( data )
+    let response = await userCollection.insertOne( {"username":data.username, "password":data.password} )
     
     userInfoCollection.insertOne( {
         userID : response.insertedId,
-        portfolio : []
-
+        userInfo : data
     } )
 
     req.session.login = true
