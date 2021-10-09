@@ -9,7 +9,6 @@ function basicform(props) {
     function handleSubmit(event) {
         var formArgs;
        if(name.toLowerCase()=="log in"){
-        alert('Handled LOGIN');
         event.preventDefault();
        
 // console.log(event.target[0].value)
@@ -30,9 +29,25 @@ function basicform(props) {
     })
        
        }else if(name.toLowerCase()=="sign up"){
-        alert('Handled SIGNUP');
         event.preventDefault();
+        
 
+        formArgs = {firstname: event.target[0].value, lastname: event.target[1].value, username: event.target[2].value, password: event.target[3].value}
+
+        fetch('/createaccount', {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(formArgs)
+        })
+        .then( res => {
+            if (!res.ok) {
+                //alert for suplicate username
+            } else {
+                window.location.href = res.url
+            }
+        })
 
        }else{
         alert(name + ':Handled FAILED');

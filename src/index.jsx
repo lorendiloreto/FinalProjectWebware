@@ -10,8 +10,8 @@ let extraButtonsLogin = [["Sign up as athlete", "signUpAth"],["Sign up as alumni
 let extraButtonsSignup = [["Back to login", "login"]]
 ReactDOM.render([<App name="Jane" />,
     
-<Basicform name="Sign Up" textInput={textInputSignup} extraButtons= {extraButtonsSignup} />,
-    <Basicform name="Log In" textInput={textInputLogin} extraButtons={extraButtonsLogin}  />
+    <Basicform name="Log In" textInput={textInputLogin} extraButtons={extraButtonsLogin}  />,
+<Basicform name="Sign Up" textInput={textInputSignup} extraButtons= {extraButtonsSignup} />
 ], 
     mountNode); /* Mounts HTML code returned by react component onto existing <div> */
 
