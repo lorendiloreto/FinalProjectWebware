@@ -129,7 +129,7 @@ app.post( "/login", async (req, res) => {
 
 /**** Mobile Routes *****/
 
-app.post("/mobile/login", (req, res) => {
+app.post("/mobile/login", async (req, res) => {
     console.log("---------LOG------------")
     console.log(req.body)
     console.log("---------LOG------------")
