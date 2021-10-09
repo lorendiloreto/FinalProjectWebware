@@ -9,7 +9,7 @@ function basicform(props) {
     if (name.toLowerCase() == "log in") {
       alert("Handled LOGIN");
       event.preventDefault();
-      formArgs = {email: event.target[0].vaule, password: event.target[1].vaule};
+      formArgs = {username: event.target[0].value, password: event.target[1].value};
       fetch("/login", {
         method: "POST",
         headers: {
