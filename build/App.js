@@ -1,37 +1,37 @@
-import React from "./_snowpack/pkg/react.js";
+import React, {useState} from "./_snowpack/pkg/react.js";
 import "./_snowpack/pkg/bootstrap.js";
 import "./styles.css.proxy.js";
 import "./_snowpack/pkg/bootstrap/dist/css/bootstrap.min.css.proxy.js";
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      login: "LOGIN"
-    };
+function App(props) {
+  const name = props.name;
+  const [clicks, setClicks] = useState(0);
+  const [login, setLogin] = useState("LOGIN");
+  function sendRequest() {
+    setClicks(clicks + 1);
+    fetch("/exampleRequest", {method: "post", "no-cors": true}).then((response) => {
+      console.log("Request returned");
+    });
   }
-  updateContent = () => {
-    console.log(this.state.login);
-    if (this.state.login == "LOGIN")
-      this.setState({login: "SIGNUP"});
-    if (this.state.login == "SIGNUP")
-      this.setState({login: "LOGIN"});
+  const loginState = () => {
+    if (login == "LOGIN") {
+      return /* @__PURE__ */ React.createElement("div", null, " ", /* @__PURE__ */ React.createElement("button", null, "Logout"), " ");
+    } else {
+      return /* @__PURE__ */ React.createElement("button", null, "Login");
+    }
   };
-  render() {
-    const loginState = () => {
-      if (this.state.login == "LOGIN") {
-        return /* @__PURE__ */ React.createElement("div", null, " ", /* @__PURE__ */ React.createElement("button", null, "Logout"), " ");
-      } else {
-        return /* @__PURE__ */ React.createElement("button", null, "Login");
-      }
-    };
-    const {name} = this.props;
-    return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
-      className: "body"
-    }, /* @__PURE__ */ React.createElement("h1", null, name), /* @__PURE__ */ React.createElement("button", {
-      type: "button",
-      onClick: this.updateContent,
-      class: "btn btn-primary"
-    }, this.state.login), loginState()));
+  function clicked() {
+    if (login == "LOGIN") {
+      setLogin("SIGNUP");
+    } else {
+      setLogin("LOGIN");
+    }
   }
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
+    className: "body"
+  }, /* @__PURE__ */ React.createElement("h1", null, name), /* @__PURE__ */ React.createElement("button", {
+    type: "button",
+    onClick: clicked,
+    class: "btn btn-primary"
+  }, login), loginState()));
 }
 export default App;

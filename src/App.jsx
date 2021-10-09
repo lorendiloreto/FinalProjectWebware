@@ -1,54 +1,49 @@
-import React from "react";
+import React, {useState} from "react";
 import 'bootstrap';
 import './styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+function App(props) {
+    const name = props.name;
+    const [clicks, setClicks] = useState(0); /* State Hook used for keeping track of the component's "clicks" */
+    const [login, setLogin] = useState("LOGIN"); 
 
-class App extends React.Component {
-constructor(props) {
-    super(props);
-    this.state = {
-        login: "LOGIN"
+
+    function sendRequest() { /* Simple Javascript function inside of component used for sending post request */
+        setClicks(clicks + 1) /* Used to set the value of the state "clicks" */
+        fetch( '/exampleRequest', { method:'post', 'no-cors':true })
+            .then( response => {
+                console.log("Request returned")
+            })
     }
-  }
-
-  updateContent = () => {
-      console.log(this.state.login)
-      if(this.state.login == "LOGIN")this.setState({ login: "SIGNUP"});
- 
-      if(this.state.login == "SIGNUP")this.setState({ login: "LOGIN"});
-    }
- 
-
-    render() {
 
 
-       const loginState = () =>{
-          if(this.state.login == 'LOGIN'){
+
+    const loginState = () =>{
+        if(login == 'LOGIN'){
             return (
-               <div> <button>Logout</button> </div>
+                <div> <button>Logout</button> </div>
             );
-          } else{
+        } else{
             return (<button>Login</button>);
-          }
         }
-
-    const { name } = this.props;
+    }
+    function clicked(){
+if(login=="LOGIN"){setLogin("SIGNUP")}else{setLogin("LOGIN")}
+}
     return(
-      <>
+        <>
         <div className = "body">
         <h1>
-          {name}
+        {name}
         </h1>
-            <button type="button" onClick={this.updateContent} class="btn btn-primary">
-      { this.state.login }
-            </button>
-           {loginState()}
-        
-        </div>
-      </>
-    );
-  }
-}
+        <button type="button" onClick={clicked} class="btn btn-primary">
+        { login }
+        </button>
+        {loginState()}
 
+        </div>
+        </>
+    );
+}
 export default App;

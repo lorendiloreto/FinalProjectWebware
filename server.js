@@ -112,6 +112,11 @@ app.post( "/login", async (req, res) => {
     }
 
 })
+/** Example request */
+app.post( "/exampleRequest", (req, res) => {
+    console.log("Click Received")
+    res.end()
+})
 app.get('/', function(request, response) {
 
     response.sendFile( __dirname + '/views/index.html' )
