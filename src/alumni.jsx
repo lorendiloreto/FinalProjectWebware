@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import List from "./AlumniView";
 
 const numbers = [{"Name": "Christian Luizzi", "Position": "QB"}, {"Name": "Harrison Kyriacou", "Position": "MLB"}];
+let players
+// getPlayers()
 var mountNode = document.getElementById("alumni-view");
 ReactDOM.render(<List items={numbers}/>, mountNode);
 

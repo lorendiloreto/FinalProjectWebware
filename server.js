@@ -121,5 +121,9 @@ app.post( "/exampleRequest", (req, res) => {
     console.log("Click Received")
     res.end()
 })
+app.post( "/getPlayers",  (req, res) => {
+    console.log("Retrieving Players")
+    red.end([{"Name": "Christian Luizzi", "Position": "QB"}, {"Name": "Harrison Kyriacou", "Position": "MLB"}])
+})
 
 app.listen(process.env.PORT || 3000)
