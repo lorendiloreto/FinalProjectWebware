@@ -1,0 +1,2 @@
+git commit -u origin/production
+git commit -u heroku/master
