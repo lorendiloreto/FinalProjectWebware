@@ -4,6 +4,12 @@ h1 {
     text-align:center;
 }
 
+h2 {
+  color: black;
+  font-style: bold;
+  text-align:center;
+}
+
 .body {
     background-color:#AC2B37;
     height:100%
@@ -91,3 +97,37 @@ html,body,#app,#app>div {
 .login-light form .btn-primary:active {
   transform:translateY(1px);
 }
+
+table{
+  margin-left: 10%;
+  margin-right: 10%;
+  overflow: scroll;
+  scrollbar-width: auto;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  padding: 10px;
+  box-shadow: 5px 10px;
+  border-collapse:separate;
+  border:solid black 5px;
+  border-radius:6px;
+  -moz-border-radius:6px;
+}
+
+th{
+  width: 5%;
+  background-color: white;
+}
+
+td{
+  width: 5%;
+}
+
+tr:nth-child(even){
+  background-color: rgb(172, 165, 165);
+}
+tr:nth-child(odd){
+  background-color: rgb(155, 139, 139);
+}
+

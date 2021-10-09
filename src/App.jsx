@@ -35,11 +35,55 @@ if(login=="LOGIN"){setLogin("SIGNUP")}else{setLogin("LOGIN")}
         <h1>
         {name}
         </h1>
-        <button type="button" onClick={clicked} class="btn btn-primary">
+        <button type="button" onClick={clicked} className="btn btn-primary">
         { login }
         </button>
         {loginState()}
-
+        <h2>Student Athletes:</h2>
+        <table>
+            <tbody>
+            <tr>
+                <th>Photo</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Mayor</th>
+                <th>GPA</th>
+                <th>Resume</th>
+            </tr>
+            <tr>
+                <td><img src="profile.jpg" width="50px" heught="50px"></img></td>
+                <td>Maria del Carmen</td>
+                <td>Sacristan Benjet</td>
+                <td>Computer Science</td>
+                <td>3.5</td>
+                <td>none</td>
+            </tr>
+            <tr>
+                <td>none</td>
+                <td>Maria del Carmen</td>
+                <td>Sacristan Benjet</td>
+                <td>Computer Science</td>
+                <td>3.5</td>
+                <td>none</td>
+            </tr>
+            <tr>
+                <td>none</td>
+                <td>Maria del Carmen</td>
+                <td>Sacristan Benjet</td>
+                <td>Computer Science</td>
+                <td>3.5</td>
+                <td>none</td>
+            </tr>
+            <tr>
+                <td>none</td>
+                <td>Maria del Carmen</td>
+                <td>Sacristan Benjet</td>
+                <td>Computer Science</td>
+                <td>3.5</td>
+                <td>none</td>
+            </tr>
+            </tbody>
+        </table>
         </div>
         </>
     );
