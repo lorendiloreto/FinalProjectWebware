@@ -1,10 +1,10 @@
 import React from "./_snowpack/pkg/react.js";
 import ReactDOM from "./_snowpack/pkg/react-dom.js";
-import List from "./AlumniView.js";
+import {List, Card} from "./AlumniView.js";
 const numbers = [{Name: "Christian Luizzi", Position: "QB"}, {Name: "Harrison Kyriacou", Position: "MLB"}];
 let players;
 var mountNode = document.getElementById("alumni-view");
-ReactDOM.render(/* @__PURE__ */ React.createElement(List, {
+ReactDOM.render(/* @__PURE__ */ React.createElement(Card, {
   items: numbers
 }), mountNode);
 function getPlayers() {

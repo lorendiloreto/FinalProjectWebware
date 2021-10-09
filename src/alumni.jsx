@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import List from "./AlumniView";
+import {List, Card} from "./AlumniView";
 
 const numbers = [{"Name": "Christian Luizzi", "Position": "QB"}, {"Name": "Harrison Kyriacou", "Position": "MLB"}];
 let players
 // getPlayers()
 var mountNode = document.getElementById("alumni-view");
-ReactDOM.render(<List items={numbers}/>, mountNode);
+ReactDOM.render(<Card items={numbers}/>, mountNode);
 
 function getPlayers() {
     fetch( '/getPlayers', { method:'post', 'no-cors':true })
