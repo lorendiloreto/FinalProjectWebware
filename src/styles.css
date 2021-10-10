@@ -96,7 +96,6 @@ html,body,#app,#app>div {
 .login-light form .btn-primary:active {
   transform:translateY(1px);
 }
-<<<<<<< HEAD
 .login-light form .btn-link:focus, .login-light form .btn-link:active {
   outline: none !important;
   box-shadow: none !important;
@@ -169,7 +168,6 @@ input:focus ~ label, input:valid ~ label 		{
   right:50%; 
 }
 
-=======
 .card-img-top{
   object-fit: cover;
 }
@@ -177,4 +175,3 @@ input:focus ~ label, input:valid ~ label 		{
 .card{
   box-shadow:3px 3px 4px rgba(0,0,0,0.2);
 }
->>>>>>> AlumniView
