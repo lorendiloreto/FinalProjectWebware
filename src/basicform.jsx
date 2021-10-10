@@ -10,7 +10,14 @@ function basicform(props) {
         document.getElementById("form").reset()
     };
 
-
+    function typeButton(){
+        if(name.toLowerCase() == "log in" || name.toLowerCase() == "sign up"){
+        return(
+        <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >{name}</button></div>
+ 
+        );}
+        else return [];
+    }
     function handleSubmit(event) {
         var formArgs;
         if(name.toLowerCase()=="log in"){
@@ -115,7 +122,7 @@ function basicform(props) {
         <form onSubmit={handleSubmit} id="form">
         <h2>{name}</h2>
         {inputFields()}
-        <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >{name}</button></div>
+        {typeButton()}
         {buttons()}
 
         </form>
