@@ -12,7 +12,7 @@ function AthApp(props) {
         <>
         <div>
         <nav class="navbar navbar-light bg-light justify-content-center">
-  <h1 class="goat-connect">{name}</h1>
+  <h1 class="goat-connect">HELLO</h1>
 </nav>
         </div>
         </>

@@ -27,8 +27,10 @@ function basicform(props) {
                 body : JSON.stringify(formArgs)
             }).then(res => {
                 if (res.ok) {
+                    console.log(res.url)
                     window.location.href = res.url
                 } else {
+                    console.log(res.ok)
                     //tell them the effed up
                 }
             })
@@ -113,7 +115,7 @@ function basicform(props) {
         <form onSubmit={handleSubmit} id="form">
         <h2>{name}</h2>
         {inputFields()}
-        <div class="form-group"><button class="btn btn-primary btn-block" type="submit" onClick={fun}>{name}</button></div>
+        <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >{name}</button></div>
         {buttons()}
 
         </form>

@@ -8,12 +8,12 @@ var state="LOGGED_OUT"
 
 var mountNode = document.getElementById("app"); 
 if(state=="LOGGED_OUT"){
-    ReactDOM.render([<App name="GOAT CONNECT" fun = {() => state="LOGGED_IN"}/>,
+    ReactDOM.render([<App name="GOAT CONNECT"/>,
 
     ], 
         mountNode); /* Mounts HTML code returned by react component onto existing <div> */
 }else if(state=="LOGGED_IN"){
-    ReactDOM.render([<AthApp name="GOAT CONNECT" fun = {() => state="LOGGED_OUT"}/>,
+    ReactDOM.render([<AthApp name="GOAT CONNECT" />,
 
     ], 
         mountNode); /* Mounts HTML code returned by react component onto existing <div> */
