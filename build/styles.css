@@ -7,10 +7,10 @@ h1 {
     width:100%;
     position: absolute;
 }
-.body {
-    background-color:#AC2B37;
-    
+body {
+background:#475d62 url(../../wpi.png);
     height:100%;
+
 }
 
 html,body,#app,#app>div {
@@ -20,6 +20,7 @@ html,body,#app,#app>div {
 
 .login-light {
    height:100%;
+
 }
 
 .login-light form {
@@ -28,12 +29,13 @@ html,body,#app,#app>div {
   background-color:#ffffff;
   padding:40px;
   border-radius:4px;
-  transform:translate(-50%, -50%);
-  position:absolute;
-  top:50%;
+  transform:translate(-50%, 0%);
+  position:absolute;  
+  top:250px;
   left:50%;
   color:#000;
   box-shadow:3px 3px 4px rgba(0,0,0,0.2);
+       padding-bottom: 300px;
 }
 
 .login-light .illustration {
@@ -64,6 +66,7 @@ html,body,#app,#app>div {
   text-shadow:none;
 }
 .login-light form .btn-primary {
+  width:100%;
   background:#AC2B37;
   border:none;
   border-radius:4px;
@@ -94,3 +97,75 @@ html,body,#app,#app>div {
 .login-light form .btn-primary:active {
   transform:translateY(1px);
 }
+.login-light form .btn-link:focus, .login-light form .btn-link:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.login-light form .btn-link {
+  color:#808080 !important;
+}
+
+.login-light form input{
+    width:100%;
+}
+
+.form-control{
+
+}
+
+/* form starting stylings ------------------------------- */
+.group 			  { 
+  position:relative; 
+  margin-bottom:45px; 
+}
+input 				{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+input:focus 		{ outline:none; }
+
+/* LABEL ======================================= */
+label 				 {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label 		{
+  top:-20px;
+  font-size:14px;
+  color:#5264AE;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:80%; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#5264AE; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
