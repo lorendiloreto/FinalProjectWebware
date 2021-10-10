@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 function basicform(props) {
-    const {name, textInput, extraButtons, fun, value} = props
+    const {name, textInput, extraButtons, fun, value, reditect} = props
 
     const resetInputField = () => {
         document.getElementById("form").reset()
@@ -113,7 +113,7 @@ function basicform(props) {
         <form onSubmit={handleSubmit} id="form">
         <h2>{name}</h2>
         {inputFields()}
-        <div class="form-group"><button class="btn btn-primary btn-block" type="submit">{name}</button></div>
+        <div class="form-group"><button class="btn btn-primary btn-block" type="submit" onClick={fun}>{name}</button></div>
         {buttons()}
 
         </form>

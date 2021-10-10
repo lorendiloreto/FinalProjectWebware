@@ -6,7 +6,7 @@ import Basicform from "./basicform"
 import ReactDOM from "react-dom";
 
 function App(props) {
-    const name = props.name;
+    const {name, fun} = props;
     const [login, setLogin] = useState("LOGIN"); 
     
 
@@ -26,7 +26,7 @@ function App(props) {
     const loginState = () =>{
         if(login == 'LOGIN'){
             return (
-                <Basicform name="Log In" textInput={textInputLogin} extraButtons={extraButtonsLogin}  fun = {() => setLogin("SIGNUP")} value="gg"/>,
+                <Basicform name="Log In" textInput={textInputLogin} extraButtons={extraButtonsLogin}  fun = {() => setLogin("SIGNUP") } value="gg" redirect={fun}/>,
             );
         } else if(login == "SIGNUP"){
             return (
@@ -38,6 +38,7 @@ function App(props) {
     function clicked(){
         if(login=="LOGIN"){setLogin("SIGNUP")}else{setLogin("LOGIN")}
     }
+
     return(
         <>
         <div className = "body outer">
@@ -46,7 +47,7 @@ function App(props) {
   <h1 class="goat-connect">{name}</h1>
 </nav>
         </div>
-         <div class="login-light inner">
+         <div class="login-light inner"> 
         {loginState()}
         <div id="form"></div>
         </div>
