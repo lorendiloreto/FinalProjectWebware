@@ -52,7 +52,7 @@ client.connect()
 
 app.get('/', function(request, response) {
 
-    response.sendFile( __dirname + '/build/alumni.html' )
+    response.sendFile( __dirname + '/build/index.html' )
 })
 
 const publicDirectoryPath = path.join(__dirname, 'build')
