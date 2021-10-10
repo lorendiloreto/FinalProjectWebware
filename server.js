@@ -161,8 +161,8 @@ app.post( "/login", async (req, res) => {
         // correct user/pass
         req.session.login = true
         req.session.userID = arr._id
-
-        res.redirect("") // *** Redirect to authenticated pages ***
+        res.status(200)
+        res.redirect("athlete.html") // *** Redirect to authenticated pages ***
     } else {
         // incorrect user/pass
         req.session.login= false
