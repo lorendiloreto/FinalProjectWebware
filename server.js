@@ -126,7 +126,7 @@ app.post( "/createaccount", async (req, res) => {
 
     req.session.login = true
     req.session.userID = response.insertedId
-    res.redirect("") // *** Change to authenticated endpoint ***
+    res.redirect(comp ? "alumni.html" : "athlete.html") // *** Change to authenticated endpoint ***
 
 })
 
@@ -204,7 +204,7 @@ app.post("/mobile/login", async (req, res) => {
     
 })
 
-app.post( "/createaccount", async (req, res) => {
+app.post( "/mobile/createaccount", async (req, res) => {
     console.log(req.body)
     
     let repeat = false
@@ -253,19 +253,17 @@ app.post( "/createaccount", async (req, res) => {
         res.status(401).end("empty username")
         return
     }
-
-    let response = await userCollection.insertOne( {"username":data.username, "password":data.password} )
+    
+    let type = comp ? "Company" : "Athlete"
+    let response = await userCollection.insertOne( {"username":data.username, "password":data.password, type} )
     
     userInfoCollection.insertOne( {
         userID : response.insertedId,
         userInfo : data,
-        type : (comp ? "Company" : "Athlete")
+        type
     } )
 
-    req.session.login = true
-    req.session.userID = response.insertedId
-    res.redirect("") // *** Change to authenticated endpoint ***
-
+    res.status(200).end()
 })
 
 /***********************/
