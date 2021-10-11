@@ -26,11 +26,11 @@ function App(props) {
     const loginState = () =>{
         if(login == 'LOGIN'){
             return (
-                <Basicform name="Log In" textInput={textInputLogin} extraButtons={extraButtonsLogin}  fun = {() => setLogin("SIGNUP") } value="gg" redirect={fun}/>
+                <Basicform name="Log In" textInput={textInputLogin} extraButtons={extraButtonsLogin}  fun = {() => setLogin("SIGNUP") } value="gg" redirect={fun} autofill={[]}/>
             );
         } else if(login == "SIGNUP"){
             return (
-                <Basicform name="Sign Up" textInput={textInputSignup} extraButtons= {extraButtonsSignup} fun = {() => setLogin("LOGIN")} value="GGS" />
+                <Basicform name="Sign Up" textInput={textInputSignup} extraButtons= {extraButtonsSignup} fun = {() => setLogin("LOGIN")} value="GGS" autofill={[]} />
 
             );
         }

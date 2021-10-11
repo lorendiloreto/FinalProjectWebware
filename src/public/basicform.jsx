@@ -6,16 +6,8 @@ import './styles.css';
 
 
 function basicform(props) {
-    const outofilldata = await fetch('/getPlayer',{
-        method: 'GET',
-        headers : {
-            'Content-Type' : 'application/json'
-        },
-        body : JSON.stringify(formArgs)
-
-    });
-
-    const {name, textInput, extraButtons, fun, value, reditect} = props
+    
+    const {name, textInput, extraButtons, fun, value, reditect, autofill} = props
 
     const resetInputField = () => {
         document.getElementById("form").reset()
@@ -99,8 +91,25 @@ function basicform(props) {
         }
     }
     const inputFields = () =>{
-
-        if(textInput.length > 0){
+        if(textInput.length > 0 && name.toLowerCase()=="settings"){
+            let r = [];
+            for(var i=0; i<textInput.length;i++){
+                            r.push(
+                            <div class="group">      
+                            <input type="text" required
+                            id={textInput[i]}
+                            name={textInput[i]}
+                            defaultValue={textInput[i]}
+                            />
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>{textInput[i]}</label>
+                            </div>
+                            )     
+            }
+            return r;
+        }
+        else if(textInput.length > 0){
 
             return textInput.map(function(each){
                 if(each.toLowerCase()=="confirm password"||each.toLowerCase()=="password"){
