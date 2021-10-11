@@ -3,7 +3,18 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
+
+
 function basicform(props) {
+    const outofilldata = await fetch('/getPlayer',{
+        method: 'GET',
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify(formArgs)
+
+    });
+
     const {name, textInput, extraButtons, fun, value, reditect} = props
 
     const resetInputField = () => {
@@ -11,7 +22,7 @@ function basicform(props) {
     };
 
     function typeButton(){
-        if(name.toLowerCase() == "log in" || name.toLowerCase() == "sign up"){
+        if(name.toLowerCase() == "log in" || name.toLowerCase() == "sign up"|| name.toLowerCase() == "settings"){
         return(
         <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >{name}</button></div>
  
@@ -20,52 +31,71 @@ function basicform(props) {
     }
     function handleSubmit(event) {
         var formArgs;
-        if(name.toLowerCase()=="log in"){
+        if(name.toLowerCase()=="settings"){
             event.preventDefault();
+            formArgs = {name: event.target[0].value, email: event.target[1].value, gpa: event.target[2].value, year: event.target[3].value, major: event.target[4].value, resume: event.target[5].value, profilePic: event.target[6].value}
 
-            // console.log(event.target[0].value)
-            //        console.log("Hello" + event.email)
-            formArgs = {username: event.target[0].value, password: event.target[1].value}
-            fetch('/login', {
-                method: 'POST',
-                headers : {
-                    'Content-Type' : 'application/json'
-                },
-                body : JSON.stringify(formArgs)
-            }).then(res => {
-                if (res.ok) {
-                    console.log(res.url)
-                    window.location.href = res.url
-                } else {
-                    console.log(res.ok)
-                    //tell them the effed up
-                }
-            })
+                fetch('/addSettings', {
+                    method : 'POST',
+                    headers : {
+                        'Content-Type' : 'application/json'
+                    },
+                    body : JSON.stringify(formArgs)
+                })
+                    .then( res => {
+                        if (!res.ok) {
+                        res.text().then(alert) //alert for invalid key
+                        }
+                 })
+        }
+        else{
+            if(name.toLowerCase()=="log in"){
+                event.preventDefault();
 
-        }else if(name.toLowerCase()=="sign up"){
-            event.preventDefault();
-
-
-            formArgs = {name: event.target[0].value, username: event.target[1].value, password: event.target[2].value, key: event.target[4].value}
-
-            fetch('/createaccount', {
-                method : 'POST',
-                headers : {
-                    'Content-Type' : 'application/json'
-                },
-                body : JSON.stringify(formArgs)
-            })
-                .then( res => {
-                    if (!res.ok) {
-                       res.text().then(alert) //alert for invalid key
-                    } else {
+                // console.log(event.target[0].value)
+                //        console.log("Hello" + event.email)
+                formArgs = {username: event.target[0].value, password: event.target[1].value}
+                fetch('/login', {
+                    method: 'POST',
+                    headers : {
+                        'Content-Type' : 'application/json'
+                    },
+                    body : JSON.stringify(formArgs)
+                }).then(res => {
+                    if (res.ok) {
+                        console.log(res.url)
                         window.location.href = res.url
+                    } else {
+                        console.log(res.ok)
+                        //tell them the effed up
                     }
                 })
 
+            }else if(name.toLowerCase()=="sign up"){
+                event.preventDefault();
 
-        }else{
-            alert(name + ':Handled FAILED');
+
+                formArgs = {name: event.target[0].value, username: event.target[1].value, password: event.target[2].value, key: event.target[4].value}
+
+                fetch('/createaccount', {
+                    method : 'POST',
+                    headers : {
+                        'Content-Type' : 'application/json'
+                    },
+                    body : JSON.stringify(formArgs)
+                })
+                    .then( res => {
+                        if (!res.ok) {
+                        res.text().then(alert) //alert for invalid key
+                        } else {
+                            window.location.href = res.url
+                        }
+                    })
+
+
+            }else{
+                alert(name + ':Handled FAILED');
+            }
         }
     }
     const inputFields = () =>{
@@ -86,17 +116,22 @@ function basicform(props) {
                         </div>                                  )
 
                 }else{
-                    return(
-                        <div class="group">      
-                        <input type="text" required
-                        id={each}
-                        name={each}
-                        />
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label>{each}</label>
-                        </div>                       
-                    )
+                    if(each.toLowerCase()=="settings"){
+                        this.setState({name: each.target.value});
+                        this.setState({email: each.target.value});
+                    }else{
+                        return(
+                            <div class="group">      
+                            <input type="text" required
+                            id={each}
+                            name={each}
+                            />
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>{each}</label>
+                            </div>                       
+                        )
+                    }
                 }
             })
         } else {
@@ -129,6 +164,7 @@ function basicform(props) {
         </form>
         </div>
     );
+
 }
 
 export default basicform
