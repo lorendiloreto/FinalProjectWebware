@@ -14,7 +14,7 @@ function AthApp(props) {
 
  
     const logout = () =>{
-        window.location.href = "/"
+        window.location.href = "/logout"
                 }  
 
     const form = () =>{
@@ -26,19 +26,15 @@ function AthApp(props) {
                 value="gg"
                 redirect={""}
                 />
+); } 
 
-            );
-        }
-
-
-    return (
-        <>
-        <div>
-        <nav class="navbar navbar-light bg-light justify-content-center">
-  <h1 class="goat-connect">GOAT CONNECT</h1>
+    return ( 
+        <> 
+        <div> 
+        <nav class="navbar navbar-light bg-light"> 
+        <button class="btn btn-primary btn-block navbar-left" onClick={logout}>logout</button>
+        <h1 class="goat-connect mx-auto">GOAT CONNECT</h1>
 </nav>
-
-        <div class="form-group"><button class="btn btn-primary btn-block">{logout()}</button></div>
         {form()}
         </div>
         </>
