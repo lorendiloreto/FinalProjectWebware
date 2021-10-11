@@ -48,7 +48,7 @@ function CardItem(props) {
         <>
         <Image image="profile.jpg"/> 
             <div className="card-body">
-                <FullName firstName={props.item.firstname} lastName={props.item.lastname}/> 
+                <FullName name={props.item.name}/> 
                 <Major mayor="Computer Science"/>
                  
                 <AboutMe aboutMe="Some quick example text to build on the card title and make up the bulk of the card's content."/>
@@ -60,7 +60,7 @@ function CardItem(props) {
 }
 
 function FullName(props) {
-    return <h5 className="card-title">{props.firstName} {props.lastName}</h5>;
+    return <h5 className="card-title">{props.name}</h5>;
 }
 
 function Major(props) {
