@@ -78,7 +78,7 @@ app.post( "/createaccount", async (req, res) => {
     }
     
     if (repeat) {
-        res.status(409).end("Duplicate username")
+        res.status(409).end("Email already registered")
         return
     }
 
