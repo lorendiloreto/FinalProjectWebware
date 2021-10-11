@@ -44,10 +44,10 @@ function App(props) {
         <div className = "body outer">
          <div class="inner">
 <nav class="navbar navbar-light bg-light justify-content-center">
-  <h1 class="goat-connect">{name}</h1>
+  <img class="goatText"/>
 </nav>
         </div>
-         <div class="login-light inner"> 
+        <div class="login-light inner"> 
         {loginState()}
         <div id="form"></div>
         </div>

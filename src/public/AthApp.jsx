@@ -43,19 +43,18 @@ function AthApp(props) {
                 value="gg"
                 redirect={""}
                 autofill={initialText}
-            />
-        );
-    }
+                />
+); } 
 
-    return (
-        <>
-            <div>
-                <nav class="navbar navbar-light bg-light">
-                    <button class="btn btn-primary btn-block navbar-left" onClick={logout}>logout</button>
-                    <h1 class="goat-connect mx-auto">GOAT CONNECT</h1>
-                </nav>
-                {form()}
-            </div>
+    return ( 
+        <> 
+        <div> 
+        <nav class="navbar navbar-light bg-light"> 
+        <button class="btn btn-primary btn-block navbar-left" onClick={logout}>logout</button>
+  <img class="goatText mx-auto"/>
+</nav>
+        {form()}
+        </div>
         </>
     );
 
