@@ -124,7 +124,6 @@ function basicform(props) {
         {inputFields()}
         {typeButton()}
         {buttons()}
-
         </form>
         </div>
     );
