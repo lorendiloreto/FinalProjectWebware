@@ -19,6 +19,7 @@ function AthApp(props) {
             const data = await fetch('/getPlayer', {
                 method: 'GET'
             }).then(res => res.json())
+            delete data.key
             setData(data)
         }
         getData()
