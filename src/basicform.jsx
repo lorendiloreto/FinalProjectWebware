@@ -46,7 +46,7 @@ function basicform(props) {
             event.preventDefault();
 
 
-            formArgs = {firstname: event.target[0].value, lastname: event.target[1].value, username: event.target[2].value, password: event.target[3].value, key: event.target[5].value}
+            formArgs = {name: event.target[0].value, username: event.target[1].value, password: event.target[2].value, key: event.target[4].value}
 
             fetch('/createaccount', {
                 method : 'POST',
@@ -57,11 +57,12 @@ function basicform(props) {
             })
                 .then( res => {
                     if (!res.ok) {
-                        //alert for suplicate username
+                       res.text().then(alert) //alert for invalid key
                     } else {
                         window.location.href = res.url
                     }
                 })
+
 
         }else{
             alert(name + ':Handled FAILED');

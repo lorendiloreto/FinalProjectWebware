@@ -19,14 +19,14 @@ function App(props) {
     }
 
     let textInputLogin=["email", "password"]
-    let textInputSignup=["firstname", "lastname","email", "password", "confirm password", "key"]
+    let textInputSignup=["name", "email", "password", "confirm password", "key"]
     let extraButtonsLogin = ["Sign up"]
     let extraButtonsSignup = ["Back to login"]
 
     const loginState = () =>{
         if(login == 'LOGIN'){
             return (
-                <Basicform name="Log In" textInput={textInputLogin} extraButtons={extraButtonsLogin}  fun = {() => setLogin("SIGNUP") } value="gg" redirect={fun}/>
+                <Basicform name="Log In" textInput={textInputLogin} extraButtons={extraButtonsLogin}  fun = {() => setLogin("SIGNUP") } value="gg" redirect={fun}/>,
             );
         } else if(login == "SIGNUP"){
             return (
