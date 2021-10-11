@@ -130,6 +130,30 @@ app.post( "/createaccount", async (req, res) => {
 
 })
 
+app.post( "/addSettings", async (req, res) => {
+    req.session.userID
+    console.log(req.body)
+    let data = await userInfoCollection.find({ }).toArray()
+    console.log(data)
+    
+    let response = await userCollection.updateOne({
+        "name":data.name,
+        "email":data.email
+    })
+    let string = await userCollection.findOne(
+        {
+        "name":data.name,
+        "email":data.email
+        },
+        {
+            $set:req.session.name,
+            $set:req.session.email
+        }
+    )
+    console.log(string)
+    res.json(string)
+})
+
 /* 
 
     Expects requests with JSON body in Format:
