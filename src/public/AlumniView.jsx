@@ -46,7 +46,7 @@ function Card(props) {
 function CardItem(props) {
     return (
         <>
-        <Image image="profile.jpg"/> 
+        <Image image="wpi-logo.jpg"/> 
             <div className="card-body">
                 <FullName name={props.item.name}/> 
                 <Major mayor="Computer Science"/>
