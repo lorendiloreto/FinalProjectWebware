@@ -36,9 +36,8 @@ function basicform(props) {
                 if (res.ok) {
                     console.log(res.url)
                     window.location.href = res.url
-                } else {
-                    console.log(res.ok)
-                    //tell them the effed up
+                } else if (!res.ok) {
+                    alert("wrong username or password")
                 }
             })
 

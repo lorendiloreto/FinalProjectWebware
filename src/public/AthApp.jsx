@@ -33,7 +33,7 @@ function AthApp(props) {
         <div> 
         <nav class="navbar navbar-light bg-light"> 
         <button class="btn btn-primary btn-block navbar-left" onClick={logout}>logout</button>
-        <h1 class="goat-connect mx-auto">GOAT CONNECT</h1>
+  <img class="goatText mx-auto"/>
 </nav>
         {form()}
         </div>

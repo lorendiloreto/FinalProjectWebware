@@ -15,8 +15,11 @@ background:#475d62 url(../../wpi.png);
 html,body,#app,#app>div {
     height:100%;
 }
-
+.goatText{
+content:url("goatconnectTextImage.png");
+}
 .navbar button {
+  position:absolute;
   background:#AC2B37;
   border:none;
   border-radius:4px;
