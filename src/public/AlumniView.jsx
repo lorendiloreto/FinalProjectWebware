@@ -44,16 +44,17 @@ function Card(props) {
 }
 
 function CardItem(props) {
+    console.log(props.item)
     return (
         <>
         <Image image="wpi-logo.jpg"/> 
             <div className="card-body">
                 <FullName name={props.item.name}/> 
-                <Major mayor="Computer Science"/>
-                 
-                <AboutMe aboutMe="Some quick example text to build on the card title and make up the bulk of the card's content."/>
-                <GPA gpa="3.4"/>
-                <Resume resume="functionalsample.pdf"/>
+                <Major mayor={props.item.major}/>
+                <Year year={props.item.year}/>
+                <AboutMe aboutMe={props.item.description}/>
+                <GPA gpa={props.item.gpa}/>
+                <Email email={props.item.email}/>
             </div>
         </>
     )
@@ -68,7 +69,7 @@ function Major(props) {
 }
 
 function GPA(props) {
-    return <h6 className="card-subtitle mb-2 text-muted right">   GPA:{props.gpa}</h6>
+    return <h6 className="card-subtitle mb-2 text-muted right">GPA: {props.gpa}</h6>
 }
 
 function Image(props) {
@@ -79,6 +80,14 @@ function AboutMe(props){
     return <p className="card-text text-justify">{props.aboutMe}</p>
 }
 
+function Year(props) {
+    return <h6 className="card-subtitle mb-2 text-muted">Class of {props.year}</h6>
+}
+
+function Email(props) {
+    return <p className="card-text text-center">{props.email}</p>
+}
+
 function Resume(props){
     return <a href="functionalsample.pdf" download>
     <img src="downloadIcon.png" alt="Resume" width="50" height="50"/>
@@ -86,4 +95,4 @@ function Resume(props){
    </a>;
 }
 
-export {List, Card, FullName, Major, GPA, Image, AboutMe, Resume};
+export {List, Card, FullName, Major, GPA, Image, AboutMe, Year, Email, Resume};
