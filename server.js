@@ -196,6 +196,70 @@ app.post("/mobile/login", async (req, res) => {
     
 })
 
+app.post( "/createaccount", async (req, res) => {
+    console.log(req.body)
+    
+    let repeat = false
+
+    let count = await userCollection.find({'username':req.body.username}).count()
+    
+    if (count > 0 ) {
+        repeat = true
+    }
+    
+    if (repeat) {
+        res.status(409).end("Duplicate username")
+        return
+    }
+
+    let data = {}
+
+    Object.keys(req.body).forEach(el => {
+        data[el] = req.body[el]
+    })
+
+    let alumKeys = await keysCollection.findOne({'type':'alumniKeys'})
+    let stuKeys = await keysCollection.findOne({'type':'studentKeys'})
+    
+    let comp = false
+    let invalidKey = true 
+
+    if (alumKeys.alumniKeys.find(el => el === data.key)) {
+        //alum
+        comp = true
+        invalidKey = false
+    } else if (stuKeys.studentKeys.find(el => el === data.key)) { 
+        // student
+        comp = false
+        invalidKey = false
+    } else {
+        // invalid key
+    }
+    
+    if (invalidKey) {
+        res.status(404).end("Invalid Key")
+        return
+    }
+
+    if (data.username === "") {
+        res.status(401).end("empty username")
+        return
+    }
+
+    let response = await userCollection.insertOne( {"username":data.username, "password":data.password} )
+    
+    userInfoCollection.insertOne( {
+        userID : response.insertedId,
+        userInfo : data,
+        type : (comp ? "Company" : "Athlete")
+    } )
+
+    req.session.login = true
+    req.session.userID = response.insertedId
+    res.redirect("") // *** Change to authenticated endpoint ***
+
+})
+
 /***********************/
 
 //app.get("/generateKeys", (req, res) => {
