@@ -155,27 +155,36 @@ app.post( "/createaccount", async (req, res) => {
 })
 
 app.post( "/addSettings", async (req, res) => {
-    req.session.userID
-    console.log(req.body)
-    let data = await userInfoCollection.find({ }).toArray()
-    console.log(data)
     
-    let response = await userCollection.updateOne({
-        "name":data.name,
-        "email":data.email
-    })
-    let string = await userCollection.findOne(
+    console.log(req.body)
+    //console.log(data)
+    let string = await userInfoCollection.updateOne(
         {
-        "name":data.name,
-        "email":data.email
+            
+            'userID': mongodb.ObjectId(req.session.userID)
         },
         {
-            $set:req.session.name,
-            $set:req.session.email
+            $set:{
+                userInfo: {
+                    name: req.body.name,
+                    email: req.body.email,
+                    gpa: req.body.gpa,
+                    year: req.body.major,
+                    major: req.body.major,
+                    resume: req.body.resume,
+                    profilePic: req.body.profilePic
+                }
+                
+            }
         }
     )
     console.log(string)
-    res.json(string)
+    let response = await userCollection.findOne({
+        'userID':req.session.userID
+    })
+    
+    //console.log(string)
+    res.json(response)
 })
 
 /* 

@@ -3,7 +3,18 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
+
+
 function basicform(props) {
+    const outofilldata = await fetch('/getPlayer',{
+        method: 'GET',
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify(formArgs)
+
+    });
+
     const {name, textInput, extraButtons, fun, value, reditect} = props
 
     const resetInputField = () => {
@@ -22,9 +33,7 @@ function basicform(props) {
         var formArgs;
         if(name.toLowerCase()=="settings"){
             event.preventDefault();
-
-
-                formArgs = {name: event.target[0].value, username: event.target[1].value, password: event.target[2].value, key: event.target[4].value}
+            formArgs = {name: event.target[0].value, email: event.target[1].value, gpa: event.target[2].value, year: event.target[3].value, major: event.target[4].value, resume: event.target[5].value, profilePic: event.target[6].value}
 
                 fetch('/addSettings', {
                     method : 'POST',
@@ -36,8 +45,6 @@ function basicform(props) {
                     .then( res => {
                         if (!res.ok) {
                         res.text().then(alert) //alert for invalid key
-                        } else {
-                            window.location.href = res.url
                         }
                  })
         }
@@ -111,7 +118,6 @@ function basicform(props) {
                 }else{
                     if(each.toLowerCase()=="settings"){
                         this.setState({name: each.target.value});
-                        console.log("me" + each.target.value)
                         this.setState({email: each.target.value});
                     }else{
                         return(
@@ -158,6 +164,7 @@ function basicform(props) {
         </form>
         </div>
     );
+
 }
 
 export default basicform
