@@ -3,6 +3,9 @@ h1 {
     background-color: white;
     text-align:center;
 }
+h2{
+
+}
 .inner {
     width:100%;
     position: absolute;
@@ -146,6 +149,7 @@ content:url("goatconnectTextImage.png");
 /* form starting stylings ------------------------------- */
 .group 			  { 
   position:relative; 
+  margin-top:25px;
   margin-bottom:45px; 
 }
 input 				{
