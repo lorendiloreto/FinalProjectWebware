@@ -12,7 +12,10 @@ function AthApp(props) {
     let textInputSettings=["name", "email", "gpa", "year", "major", "resume", "profile-pic"]
    // let extraButtonsSettings = ["Back to login"]
 
-   
+ 
+    const logout = () =>{
+        window.location.href = "/logout"
+                }  
 
     const form = () =>{
             return (
@@ -23,18 +26,15 @@ function AthApp(props) {
                 value="gg"
                 redirect={""}
                 />
+); } 
 
-            );
-        }
-
-
-    return (
-        <>
-        <div>
-        <nav class="navbar navbar-light bg-light justify-content-center">
-  <h1 class="goat-connect">HELLO</h1>
+    return ( 
+        <> 
+        <div> 
+        <nav class="navbar navbar-light bg-light"> 
+        <button class="btn btn-primary btn-block navbar-left" onClick={logout}>logout</button>
+        <h1 class="goat-connect mx-auto">GOAT CONNECT</h1>
 </nav>
-
         {form()}
         </div>
         </>
