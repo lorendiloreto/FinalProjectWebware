@@ -3,7 +3,7 @@
 ## Jake Feiss, Loren DiLoreto, Harrison Kyriacou, Benjamin Robinson, Maria Carmen Sacristan
 
 ### Heroku link: https://goatconnect.herokuapp.com/
-### YouTube Video Link: 
+### YouTube Video Link: https://youtu.be/kMwTqaEJUeQ
 
 Our group made GOATCONNECT: a linkedin-like service for WPI student athletes looking for jobs or internships. The goal of goatconnect is to connect current WPI student athletes with student athlete alumni who have graduated and want to offer jobs to WPI students who had a similar college experience to them. We plan to continue working on this project in our own time.
 
