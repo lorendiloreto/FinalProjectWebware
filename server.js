@@ -140,7 +140,7 @@ app.post( "/createaccount", async (req, res) => {
         return
     }
 
-    let response = await userCollection.insertOne( {"username":data.username, "password":data.password} )
+    let response = await userCollection.insertOne( {"username":data.username, "password":data.password, "type" : (comp ? "Company" : "Athlete")} )
 
     delete data.password
 
