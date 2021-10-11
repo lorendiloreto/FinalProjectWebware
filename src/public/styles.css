@@ -1,0 +1,213 @@
+h1 {
+    color: #AC2B37;
+    background-color: white;
+    text-align:center;
+}
+h2{
+
+}
+.inner {
+    width:100%;
+    position: absolute;
+}
+body {
+    background:#475d62 url(../../wpi.png);
+    background-size: fill;
+    height:100%;
+}
+
+html,body,#app,#app>div {
+    height:100%;
+}
+.goatText{
+content:url("goatconnectTextImage.png");
+}
+.navbar button {
+  position:absolute;
+  background:#AC2B37;
+  border:none;
+  border-radius:4px;
+  padding:11px;
+  box-shadow:none;
+  margin-left:25px;
+  text-shadow:none;
+  outline:none;
+
+}
+.navbar button:focus,.navbar button:active {
+   outline: none !important;
+   box-shadow: none;
+}
+.navbar button:hover, .navbar button:active{
+    background:#751d26;
+  outline:none;
+}
+.navbar button:active:focus {
+  background:#b8091b;
+  border:none;
+  border-radius:4px;
+  box-shadow:none;
+  text-shadow:none;
+}
+
+.navbar button:active {
+  transform:translateY(1px);
+}
+.login-light {
+   height:100%;
+
+}
+
+.login-light form {
+  max-width:320px;
+  width:90%;
+  background-color:#ffffff;
+  padding:40px;
+  border-radius:4px;
+  transform:translate(-50%, 0%);
+  position:absolute;  
+  top:250px;
+  left:50%;
+  color:#000;
+  box-shadow:3px 3px 4px rgba(0,0,0,0.2);
+}
+
+.login-light .illustration {
+  text-align:center;
+  padding:15px 0 20px;
+  font-size:100px;
+  color:#AC2B37;
+}
+
+.login-light form .form-control {
+  background:none;
+  border:none;
+  border-bottom:1px solid #434a52;
+  border-radius:0;
+  box-shadow:none;
+  outline:none;
+  color:inherit;
+}
+
+
+.login-light form .btn-primary:active:focus {
+  background:#b8091b;
+  border:none;
+  border-radius:4px;
+  padding:11px;
+  box-shadow:none;
+  margin-top:26px;
+  text-shadow:none;
+}
+.login-light form .btn-primary {
+  width:100%;
+  background:#AC2B37;
+  border:none;
+  border-radius:4px;
+  padding:11px;
+  box-shadow:none;
+  margin-top:26px;
+  text-shadow:none;
+  outline:none;
+}
+
+.login-light form .btn-primary:hover, .login-light form .btn-primary:active {
+  background:#751d26;
+  outline:none;
+}
+.login-light form .signUpAthlete, .login-light form .signUpAlumni {
+  display:block;
+  text-align:center;
+  font-size:12px;
+  color:#6f7a85;
+  opacity:0.9;
+  text-decoration:none;
+}
+.login-light form .signUpAthlete:hover, .login-light form .signUpAlumni:hover,.login-light form .signUpAthlete:active, .login-light form .signUpAlumni:active{  
+  opacity:1;
+  text-decoration:none;
+}
+
+.login-light form .btn-primary:active {
+  transform:translateY(1px);
+}
+.login-light form .btn-link:focus, .login-light form .btn-link:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.login-light form .btn-link {
+  color:#808080 !important;
+}
+
+.login-light form input{
+    width:100%;
+}
+
+.form-control{
+
+}
+
+/* form starting stylings ------------------------------- */
+.group 			  { 
+  position:relative; 
+  margin-top:25px;
+  margin-bottom:45px; 
+}
+input 				{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+input:focus 		{ outline:none; }
+
+/* LABEL ======================================= */
+label 				 {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label 		{
+  top:-20px;
+  font-size:14px;
+  color:#AC2B37;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:80%; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#AC2B37; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+.card-img-top{
+  object-fit: cover;
+}
+
+.card{
+  box-shadow:3px 3px 4px rgba(0,0,0,0.2);
+}
