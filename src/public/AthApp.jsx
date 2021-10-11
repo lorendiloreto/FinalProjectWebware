@@ -12,7 +12,10 @@ function AthApp(props) {
     let textInputSettings=["name", "email", "resume", "profile-pic"]
    // let extraButtonsSettings = ["Back to login"]
 
-   
+ 
+    const logout = () =>{
+        window.location.href = "/"
+                }  
 
     const form = () =>{
             return (
@@ -32,9 +35,10 @@ function AthApp(props) {
         <>
         <div>
         <nav class="navbar navbar-light bg-light justify-content-center">
-  <h1 class="goat-connect">HELLO</h1>
+  <h1 class="goat-connect">GOAT CONNECT</h1>
 </nav>
 
+        <div class="form-group"><button class="btn btn-primary btn-block">{logout()}</button></div>
         {form()}
         </div>
         </>
