@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import 'bootstrap';
 import './styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,33 +9,32 @@ function AthApp(props) {
 
     const { name, fun } = props;
 
-    let textInputSettings = ["name", "email", "gpa", "year", "major", "resume", "profile-pic"]
+    const [autofilldata, setData] = useState({})
+
+    let textInputSettings = ["name", "email", "gpa", "year", "major", "description"]
     // let extraButtonsSettings = ["Back to login"]
 
-    const autofilldata = fetch('/getPlayer', {
-        method: 'GET'
-    })
-        .then(res => {
-            console.log(res)
-            return res.json();
-        })
-        .then(json => {
-            console.log(json)
-            return json
-        })
+    useEffect(() => {
+        async function getData() {
+            const data = await fetch('/getPlayer', {
+                method: 'GET'
+            }).then(res => res.json())
+            setData(data)
+        }
+        getData()
+    }, [])
 
     let initialText = Object.values(autofilldata)
-    console.log(autofilldata)
-
+    console.log(initialText)
 
 
     const logout = () => {
         window.location.href = "/logout"
     }
 
-    const form = async () => {
+    const form = () => {
 
-
+        
         return (
             <Basicform name="Settings"
                 textInput={textInputSettings}

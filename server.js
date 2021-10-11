@@ -175,10 +175,9 @@ app.post( "/addSettings", async (req, res) => {
                     name: req.body.name,
                     email: req.body.email,
                     gpa: req.body.gpa,
-                    year: req.body.major,
+                    year: req.body.year,
                     major: req.body.major,
-                    resume: req.body.resume,
-                    profilePic: req.body.profilePic
+                    description: req.body.description
                 }
                 
             }

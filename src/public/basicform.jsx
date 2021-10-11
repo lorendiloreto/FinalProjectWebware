@@ -25,7 +25,7 @@ function basicform(props) {
         var formArgs;
         if(name.toLowerCase()=="settings"){
             event.preventDefault();
-            formArgs = {name: event.target[0].value, email: event.target[1].value, gpa: event.target[2].value, year: event.target[3].value, major: event.target[4].value, resume: event.target[5].value, profilePic: event.target[6].value}
+            formArgs = {name: event.target[0].value, email: event.target[1].value, gpa: event.target[2].value, year: event.target[3].value, major: event.target[4].value, description: event.target[5].value}
 
                 fetch('/addSettings', {
                     method : 'POST',
@@ -99,7 +99,7 @@ function basicform(props) {
                             <input type="text" required
                             id={textInput[i]}
                             name={textInput[i]}
-                            defaultValue={textInput[i]}
+                            defaultValue={autofill[i]}
                             />
                             <span class="highlight"></span>
                             <span class="bar"></span>
