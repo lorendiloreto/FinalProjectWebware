@@ -46,10 +46,14 @@ client.connect()
         keysCollection = __collection
         return "Connected to Databases"
     })
-    .then( console.log )
+    .then( console.log ) 
 
 // ----- MongoDB Set up ------
 
+app.get('/', function(request, response) {
+
+    response.sendFile( __dirname + '/build/index.html' )
+})
 
 const publicDirectoryPath = path.join(__dirname, 'build')
 
@@ -157,8 +161,8 @@ app.post( "/login", async (req, res) => {
         // correct user/pass
         req.session.login = true
         req.session.userID = arr._id
-
-        res.redirect("") // *** Redirect to authenticated pages ***
+        res.status(200)
+        res.redirect("athlete.html") // *** Redirect to authenticated pages ***
     } else {
         // incorrect user/pass
         req.session.login= false
@@ -286,9 +290,9 @@ app.post( "/exampleRequest", (req, res) => {
     console.log("Click Received")
     res.end()
 })
-app.get('/', function(request, response) {
-
-    response.sendFile( __dirname + '/views/index.html' )
+app.post( "/getPlayers",  async (req, res) => {
+    let data = await userInfoCollection.find({ }).toArray()
+    res.json(data)
 })
 
 app.listen(process.env.PORT || 3000)

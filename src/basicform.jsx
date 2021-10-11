@@ -4,13 +4,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 function basicform(props) {
-    const {name, textInput, extraButtons, fun, value} = props
+    const {name, textInput, extraButtons, fun, value, reditect} = props
 
     const resetInputField = () => {
         document.getElementById("form").reset()
     };
 
-
+    function typeButton(){
+        if(name.toLowerCase() == "log in" || name.toLowerCase() == "sign up"){
+        return(
+        <div class="form-group"><button class="btn btn-primary btn-block" type="submit" >{name}</button></div>
+ 
+        );}
+        else return [];
+    }
     function handleSubmit(event) {
         var formArgs;
         if(name.toLowerCase()=="log in"){
@@ -27,8 +34,10 @@ function basicform(props) {
                 body : JSON.stringify(formArgs)
             }).then(res => {
                 if (res.ok) {
+                    console.log(res.url)
                     window.location.href = res.url
                 } else {
+                    console.log(res.ok)
                     //tell them the effed up
                 }
             })
@@ -113,7 +122,7 @@ function basicform(props) {
         <form onSubmit={handleSubmit} id="form">
         <h2>{name}</h2>
         {inputFields()}
-        <div class="form-group"><button class="btn btn-primary btn-block" type="submit">{name}</button></div>
+        {typeButton()}
         {buttons()}
 
         </form>
