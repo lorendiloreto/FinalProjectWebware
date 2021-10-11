@@ -162,7 +162,11 @@ app.post( "/login", async (req, res) => {
         req.session.login = true
         req.session.userID = arr._id
         res.status(200)
-        res.redirect("athlete.html") // *** Redirect to authenticated pages ***
+        if (arr.type === "Athlete") {
+            res.redirect("athlete.html") // *** Redirect to authenticated pages ***
+        } else if (arr.type === "Company") {
+            res.redirect("alumni.html")
+        }
     } else {
         // incorrect user/pass
         req.session.login= false
