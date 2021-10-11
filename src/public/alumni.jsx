@@ -14,7 +14,6 @@ async function getPlayers() {
         })
         .then(function(json) {
             let newJson = json.map((item) => {
-                item = item.userInfo
                 return item
             })
             var mountNode = document.getElementById("alumni-view");

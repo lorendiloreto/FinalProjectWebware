@@ -23,8 +23,9 @@ function ListItem(props) {
     );
 }
 function Card(props) {
-    console.log(props.items)
-    const cardItems = props.items.map((item) => (
+    const athletes = props.items.filter(item => item.type == "Athlete");
+    const athleteInfo = athletes.map(item => item.userInfo)
+    const cardItems = athleteInfo.map((item) => (
         <>
         <div class="p-2 col-sm-12 col-md-6 col-lg-3">
             <div class="card">
@@ -47,7 +48,7 @@ function CardItem(props) {
         <>
         <Image image="profile.jpg"/> 
             <div className="card-body">
-                <FullName firstName={props.item.firstname} lastName={props.item.lastname}/> 
+                <FullName name={props.item.name}/> 
                 <Major mayor="Computer Science"/>
                  
                 <AboutMe aboutMe="Some quick example text to build on the card title and make up the bulk of the card's content."/>
@@ -59,7 +60,7 @@ function CardItem(props) {
 }
 
 function FullName(props) {
-    return <h5 className="card-title">{props.firstName} {props.lastName}</h5>;
+    return <h5 className="card-title">{props.name}</h5>;
 }
 
 function Major(props) {
