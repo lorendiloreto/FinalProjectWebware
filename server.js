@@ -335,6 +335,16 @@ app.post( "/getPlayers",  async (req, res) => {
     res.json(data)
 })
 
+app.get( "/getPlayer", async (req, res) => {
+
+    let uid = req.session.userID
+    
+    let data = await userInfoCollection.findOne({ userID : mongodb.ObjectId(uid) })
+    console.log(data)
+    res.json(data.userInfo)
+    
+})
+
 app.get('/*', (req, res) => {
     res.redirect('/')
 })
