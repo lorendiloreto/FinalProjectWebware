@@ -66,6 +66,12 @@ app.use(express.static(publicDirectoryPath))
 
 app.use(express.json())
 
+app.get('/logout', (req, res) => {
+    req.session.athlogin= false
+    req.session.alumlogin= false
+    res.redirect('/')
+})
+
 app.get("/_snowpack/*", (req, res) => {
     res.sendFile( __dirname + '/build' + req.path)
 })
@@ -86,15 +92,15 @@ app.get("/alumni", (req, res) => {
 
 app.post( "/createaccount", async (req, res) => {
     console.log(req.body)
-    
+
     let repeat = false
 
     let count = await userCollection.find({'username':req.body.username}).count()
-    
+
     if (count > 0 ) {
         repeat = true
     }
-    
+
     if (repeat) {
         res.status(409).end("Email already registered")
         return
@@ -108,7 +114,7 @@ app.post( "/createaccount", async (req, res) => {
 
     let alumKeys = await keysCollection.findOne({'type':'alumniKeys'})
     let stuKeys = await keysCollection.findOne({'type':'studentKeys'})
-    
+
     let comp = false
     let invalidKey = true 
 
@@ -123,7 +129,7 @@ app.post( "/createaccount", async (req, res) => {
     } else {
         // invalid key
     }
-    
+
     if (invalidKey) {
         res.status(404).end("Invalid Key")
         return
@@ -135,7 +141,7 @@ app.post( "/createaccount", async (req, res) => {
     }
 
     let response = await userCollection.insertOne( {"username":data.username, "password":data.password} )
-    
+
     delete data.password
 
 
@@ -327,6 +333,10 @@ app.post( "/exampleRequest", (req, res) => {
 app.post( "/getPlayers",  async (req, res) => {
     let data = await userInfoCollection.find({ }).toArray()
     res.json(data)
+})
+
+app.get('/*', (req, res) => {
+    res.redirect('/')
 })
 
 app.listen(process.env.PORT || 3000)
