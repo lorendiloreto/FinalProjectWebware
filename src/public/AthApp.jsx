@@ -9,7 +9,7 @@ function AthApp(props) {
     
     const {name, fun} = props;
     
-    let textInputSettings=["name", "email", "resume", "profile-pic"]
+    let textInputSettings=["name", "email", "gpa", "year", "major", "resume", "profile-pic"]
    // let extraButtonsSettings = ["Back to login"]
 
  

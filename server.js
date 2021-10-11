@@ -160,6 +160,39 @@ app.post( "/createaccount", async (req, res) => {
 
 })
 
+app.post( "/addSettings", async (req, res) => {
+    
+    console.log(req.body)
+    //console.log(data)
+    let string = await userInfoCollection.updateOne(
+        {
+            
+            'userID': mongodb.ObjectId(req.session.userID)
+        },
+        {
+            $set:{
+                userInfo: {
+                    name: req.body.name,
+                    email: req.body.email,
+                    gpa: req.body.gpa,
+                    year: req.body.major,
+                    major: req.body.major,
+                    resume: req.body.resume,
+                    profilePic: req.body.profilePic
+                }
+                
+            }
+        }
+    )
+    console.log(string)
+    let response = await userCollection.findOne({
+        'userID':req.session.userID
+    })
+    
+    //console.log(string)
+    res.json(response)
+})
+
 /* 
 
     Expects requests with JSON body in Format:
@@ -333,6 +366,16 @@ app.post( "/exampleRequest", (req, res) => {
 app.post( "/getPlayers",  async (req, res) => {
     let data = await userInfoCollection.find({ }).toArray()
     res.json(data)
+})
+
+app.get( "/getPlayer", async (req, res) => {
+
+    let uid = req.session.userID
+    
+    let data = await userInfoCollection.findOne({ userID : mongodb.ObjectId(uid) })
+    console.log(data)
+    res.json(data.userInfo)
+    
 })
 
 app.get('/*', (req, res) => {
