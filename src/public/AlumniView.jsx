@@ -44,7 +44,6 @@ function Card(props) {
 }
 
 function CardItem(props) {
-    console.log(props.item)
     return (
         <>
         <Image image="wpi-logo.jpg"/> 
