@@ -32,9 +32,10 @@ function basicform(props) {
                 })
                     .then( res => {
                         if (!res.ok) {
-                        res.text().then(alert) //alert for invalid key
-                        }
-                 })
+                   //     res.text().then(alert) //alert for invalid key
+                 }})
+                    
+            alert("settings updated")
         }else if(name.toLowerCase()=="log in"){
                 event.preventDefault();
 
