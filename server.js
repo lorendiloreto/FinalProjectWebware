@@ -50,12 +50,12 @@ client.connect()
 
 // ----- MongoDB Set up ------
 
-app.get('/', function(request, response) {
+//app.get('/', function(request, response) {
+//
+//    response.sendFile( __dirname + '/build/index.html' )
+//})
 
-    response.sendFile( __dirname + '/build/index.html' )
-})
-
-const publicDirectoryPath = path.join(__dirname, 'build')
+const publicDirectoryPath = path.join(__dirname, 'build/public')
 
 app.use( cookie({
     name: 'session',
@@ -65,6 +65,24 @@ app.use( cookie({
 app.use(express.static(publicDirectoryPath))
 
 app.use(express.json())
+
+app.get("/_snowpack/*", (req, res) => {
+    res.sendFile( __dirname + '/build' + req.path)
+})
+
+app.get("/athlete", (req, res) => {
+    if (req.session.athlogin)
+        res.sendFile( __dirname + '/build/athlete.html')
+    else
+        res.status(401).redirect('/')
+})
+
+app.get("/alumni", (req, res) => {
+    if (req.session.alumlogin)
+        res.sendFile( __dirname + '/build/alumni.html')
+    else
+        res.status(401).redirect('/')
+})
 
 app.post( "/createaccount", async (req, res) => {
     console.log(req.body)
@@ -118,15 +136,21 @@ app.post( "/createaccount", async (req, res) => {
 
     let response = await userCollection.insertOne( {"username":data.username, "password":data.password} )
     
+    delete data.password
+
+
     userInfoCollection.insertOne( {
         userID : response.insertedId,
         userInfo : data,
         type : (comp ? "Company" : "Athlete")
     } )
-
-    req.session.login = true
+    if (comp) {
+        req.session.alumlogin = true
+    } else {
+        req.session.athlogin = true
+    }
     req.session.userID = response.insertedId
-    res.redirect(comp ? "alumni.html" : "athlete.html") // *** Change to authenticated endpoint ***
+    res.redirect(comp ? "/alumni" : "/athlete") // *** Change to authenticated endpoint ***
 
 })
 
@@ -154,22 +178,28 @@ app.post( "/login", async (req, res) => {
 
     if (arr === null) {
         //incorect username/password
-        req.session.login= false
+        req.session.athlogin= false
+        req.session.alumlogin= false
         req.session.userID = null
         res.status(401).end()
     } else if (arr.username === uName && arr.password === pWord) { 
         // correct user/pass
-        req.session.login = true
+        if (arr.type === "Company" ) {
+            req.session.alumlogin = true
+        } else if (arr.type === "Athlete") {
+            req.session.athlogin = true
+        }
         req.session.userID = arr._id
         res.status(200)
         if (arr.type === "Athlete") {
-            res.redirect("athlete.html") // *** Redirect to authenticated pages ***
+            res.redirect("/athlete") // *** Redirect to authenticated pages ***
         } else if (arr.type === "Company") {
-            res.redirect("alumni.html")
+            res.redirect("/alumni")
         }
     } else {
         // incorrect user/pass
-        req.session.login= false
+        req.session.athlogin= false
+        req.session.alumlogin= false
         req.session.userID = null
         res.status(401).end()
     }
@@ -201,20 +231,20 @@ app.post("/mobile/login", async (req, res) => {
         req.session.userID = null
         res.status(401).end()
     }
-    
+
 })
 
 app.post( "/mobile/createaccount", async (req, res) => {
     console.log(req.body)
-    
+
     let repeat = false
 
     let count = await userCollection.find({'username':req.body.username}).count()
-    
+
     if (count > 0 ) {
         repeat = true
     }
-    
+
     if (repeat) {
         res.status(409).end("Duplicate username")
         return
@@ -228,7 +258,7 @@ app.post( "/mobile/createaccount", async (req, res) => {
 
     let alumKeys = await keysCollection.findOne({'type':'alumniKeys'})
     let stuKeys = await keysCollection.findOne({'type':'studentKeys'})
-    
+
     let comp = false
     let invalidKey = true 
 
@@ -243,7 +273,7 @@ app.post( "/mobile/createaccount", async (req, res) => {
     } else {
         // invalid key
     }
-    
+
     if (invalidKey) {
         res.status(404).end("Invalid Key")
         return
@@ -253,10 +283,12 @@ app.post( "/mobile/createaccount", async (req, res) => {
         res.status(401).end("empty username")
         return
     }
-    
+
     let type = comp ? "Company" : "Athlete"
     let response = await userCollection.insertOne( {"username":data.username, "password":data.password, type} )
-    
+
+    delete data.password
+
     userInfoCollection.insertOne( {
         userID : response.insertedId,
         userInfo : data,
