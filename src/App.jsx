@@ -26,7 +26,7 @@ function App(props) {
     const loginState = () =>{
         if(login == 'LOGIN'){
             return (
-                <Basicform name="Log In" textInput={textInputLogin} extraButtons={extraButtonsLogin}  fun = {() => setLogin("SIGNUP") } value="gg" redirect={fun}/>,
+                <Basicform name="Log In" textInput={textInputLogin} extraButtons={extraButtonsLogin}  fun = {() => setLogin("SIGNUP") } value="gg" redirect={fun}/>
             );
         } else if(login == "SIGNUP"){
             return (
