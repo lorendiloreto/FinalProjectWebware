@@ -57,11 +57,12 @@ function basicform(props) {
             })
                 .then( res => {
                     if (!res.ok) {
-                        //alert for suplicate username
+                       res.text().then(alert) //alert for invalid key
                     } else {
                         window.location.href = res.url
                     }
                 })
+
 
         }else{
             alert(name + ':Handled FAILED');
