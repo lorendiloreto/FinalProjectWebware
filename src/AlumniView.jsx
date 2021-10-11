@@ -23,8 +23,9 @@ function ListItem(props) {
     );
 }
 function Card(props) {
-    console.log(props.items)
-    const cardItems = props.items.map((item) => (
+    const athletes = props.items.filter(item => item.type == "Athlete");
+    const athleteInfo = athletes.map(item => item.userInfo)
+    const cardItems = athleteInfo.map((item) => (
         <>
         <div class="p-2 col-sm-12 col-md-6 col-lg-3">
             <div class="card">
