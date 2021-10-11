@@ -85,17 +85,23 @@ function basicform(props) {
                         </div>                                  )
 
                 }else{
-                    return(
-                        <div class="group">      
-                        <input type="text" required
-                        id={each}
-                        name={each}
-                        />
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label>{each}</label>
-                        </div>                       
-                    )
+                    if(each.toLowerCase()=="settings"){
+                        this.setState({name: each.target.value});
+                        console.log("me" + each.target.value)
+                        this.setState({email: each.target.value});
+                    }else{
+                        return(
+                            <div class="group">      
+                            <input type="text" required
+                            id={each}
+                            name={each}
+                            />
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>{each}</label>
+                            </div>                       
+                        )
+                    }
                 }
             })
         } else {
